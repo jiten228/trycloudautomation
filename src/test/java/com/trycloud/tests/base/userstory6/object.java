@@ -33,29 +33,13 @@ public class object {
     Password: UserPassword: 123
      */
     @Test
-    public void positiveDataLogin() throws InterruptedException {
-        ArrayList<String> userNamesPositive = new ArrayList<>(Arrays.asList("User20",
-                "User50", "User80", "User110"));
-        String password = "Userpass123";
+    public void DataLogin() {
 
-        for (String each : userNamesPositive) {
-            // type User name
-            driver.findElement(By.name("user")).sendKeys(each);
-            Thread.sleep(1000);
-            // type Password
-            driver.findElement(By.name("password")).sendKeys(password);
-            Thread.sleep(2000);
-            // Click login button
-            driver.findElement(By.xpath("//input[@id='submit-form']")).click();
-            Thread.sleep(2000);
-        }
+        String userName = "User20";
+        String password = "Userpass123";
 
 
     }
-
-
-
-
 
 
 }
