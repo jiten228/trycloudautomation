@@ -71,5 +71,6 @@ public class TC6 {
 
         Thread.sleep(3000);
          driver.close();
+         // r
     }
 }
