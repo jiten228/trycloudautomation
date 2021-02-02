@@ -38,7 +38,7 @@ public class object {
 
         String userName = "User20";
         String password = "Userpass123";
-//login as a user
+     //login as a user
         driver.findElement(By.xpath("//input[@name='user']")).sendKeys(userName);
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Userpass123");
         driver.findElement(By.xpath("//input[@type='submit']")).click();
@@ -46,7 +46,7 @@ public class object {
 
         //click "Notes" module
         driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
-
+        //
 
     }
 
