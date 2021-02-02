@@ -1,6 +1,5 @@
-package com.trycloud.tests.User_Story3;
+package com.trycloud.tests.base.User_Story3;
 
-import com.trycloud.tests.utilities.ConfigurationReader;
 import com.trycloud.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
