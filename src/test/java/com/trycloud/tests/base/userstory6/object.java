@@ -46,7 +46,7 @@ public class object {
 
         //click "Notes" module
         driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
-        //
+
 
     }
 
