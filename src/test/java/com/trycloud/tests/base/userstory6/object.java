@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,7 @@ public class object {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         //Navigate to login page of TryCloud
-        driver.get("https://app.trycloud.net/index.php/login");
+        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
@@ -42,14 +43,9 @@ public class object {
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Userpass123");
         driver.findElement(By.xpath("//input[@type='submit']")).click();
         Thread.sleep(3000);
-//click "Notes" module
 
-
-
-
-
-
-
+        //click "Notes" module
+        driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
 
 
     }
