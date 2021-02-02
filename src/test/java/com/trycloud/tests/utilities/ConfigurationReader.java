@@ -9,11 +9,12 @@ public class ConfigurationReader {
     //In this class we will implement the repeated steps of reading
     // from configuration.properties file
 
-    //#1- Create the object of Properties
+    // Create the object of Properties
+
     private static Properties properties = new Properties();
 
     static {
-        //#2- Get the path and open the file
+        // Get the path and open the file
         try {
             FileInputStream file = new FileInputStream("configuration.properties");
 
@@ -28,10 +29,9 @@ public class ConfigurationReader {
         }
     }
 
-    //#4- Use the object to read from the configuration.properties file
+    // Use the object to read from the configuration.properties file
     // concept of getter method
     public static String getProperty(String keyWord){
         return properties.getProperty(keyWord);
     }
-
 }
