@@ -33,10 +33,23 @@ public class object {
     Password: UserPassword: 123
      */
     @Test
-    public void DataLogin() {
+    public void DataLogin() throws InterruptedException {
 
         String userName = "User20";
         String password = "Userpass123";
+//login as a user
+        driver.findElement(By.xpath("//input[@name='user']")).sendKeys(userName);
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Userpass123");
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        Thread.sleep(3000);
+//click "Notes" module
+
+
+
+
+
+
+
 
 
     }
