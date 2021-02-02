@@ -61,6 +61,21 @@ public class TalksModule {
         talksModuleButton.click();
         Thread.sleep(3000);
 
+        // Home page Verification
+        String expectedTalkModuleTitle ="";
+        String actualTalkModuleTitle = driver.getTitle();
+
+        if (expectedTitle.equals(actualTitle)){
+            System.out.println("Title verification has PASSED. STEP 1 COMPLETE!");
+            System.out.println("actualTitle = " + actualTitle);
+            System.out.println("expectedTitle = " + expectedTitle);
+
+        }else{
+            System.out.println("actualTitle = " + actualTitle);
+            System.out.println("expectedTitle = " + expectedTitle);
+        }
+
+        // will be continue
 
 
 
