@@ -26,14 +26,14 @@ public class AccessToSearch {
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
+        driver.get("http://qa3.trycloud.net");
         String username = ConfigurationReader.getProperty("username");
         BrowserUtils.sleep(2);
 
         // 1.Login as a user
         LoginUtils.loginToTryCloud(driver, username);
 
-        String expectedTitle = "Files - Trycloud - QA";
+        String expectedTitle = "Dashboard - Trycloud";
         String actualTitle = driver.getTitle();
         if (actualTitle.equals(expectedTitle)){
             System.out.println("Landing page Title verification PASSED");
@@ -45,31 +45,35 @@ public class AccessToSearch {
     @Test
     public static void accesToSearch() throws InterruptedException {
         // 2.Click magnifier icon  on the right top
-        ArrayList<String> positiveData = new ArrayList<>(Arrays.asList("Notes","Talk","Dec 22nd"));
-        BrowserUtils.sleep(2);
+        ArrayList<String> positiveData = new ArrayList<>(Arrays.asList("Files","Talk","Contacts"));
 
-       // 3.Search any existing file/folder/user name
+        // 3.Search any existing file/folder/user name
         for (String each : positiveData){
-            WebElement searchBox = driver.findElement(By.xpath("//a[@aria-controls]"));
-            searchBox.sendKeys(each);
-            Thread.sleep(2000);
-            searchBox.sendKeys(Keys.ENTER);
-            BrowserUtils.sleep(2);
+            driver.findElement(By.xpath("//a[@class='header-menu__trigger']")).click();
 
-         // 4. Verify the app displays the expected result option
-            boolean isLocate = driver.findElement(By.xpath("//h3[@class='unified-search__result-line-one']")).isDisplayed();
+            WebElement searchField = driver.findElement(By.xpath("//input[@type='search']"));
+            searchField.click();
+            searchField.sendKeys(each);
+            BrowserUtils.sleep(1);
+            searchField.sendKeys(Keys.ENTER);
+            BrowserUtils.sleep(1);
+            WebElement result = driver.findElement(By.xpath("//span[@class='unified-search__result-content']"));
+            result.click();
+            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-            if(isLocate){
-               String actualTitle = driver.getTitle();
+            // 4. Verify the app displays the expected result option
 
-               if (actualTitle.toLowerCase().contains(each.toLowerCase())){
-                   System.out.println("Expected result option: " + each +"- PASSED!!!");
-               }
+            String actualTitle = driver.getTitle();
+
+            if (actualTitle.toLowerCase().contains(each.toLowerCase())){
+                System.out.println("Expected result option: " + each +"- PASSED!!!");
+            }else {
+                System.out.println("Expected result option: " + each +"- FAILED!!!");
             }
-
-
         }
 
 
     }
+
+
 }
