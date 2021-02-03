@@ -22,7 +22,7 @@ public abstract class TestBase {
     @AfterMethod
     public void tearDown(){
         BrowserUtils.sleep(2);
-        driver.close();
+    //    driver.close();
     }
 
 }
