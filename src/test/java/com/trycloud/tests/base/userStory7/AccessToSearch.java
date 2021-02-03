@@ -1,5 +1,7 @@
 package com.trycloud.tests.base.userStory7;
 
+import com.google.common.base.Verify;
+import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
 import com.trycloud.tests.utilities.LoginUtils;
 import com.trycloud.tests.utilities.WebDriverFactory;
@@ -16,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AccessToSearch {
     static WebDriver driver;
+    // Test case #1 - Verify users can search any files/folder/users from the search box.
 
     @BeforeMethod
     public void setupMethod(){
@@ -25,19 +28,48 @@ public class AccessToSearch {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get("http://qa.trycloud.net/index.php/login?clear=1");
         String username = ConfigurationReader.getProperty("username");
+        BrowserUtils.sleep(2);
+
+        // 1.Login as a user
         LoginUtils.loginToTryCloud(driver, username);
+
+        String expectedTitle = "Files - Trycloud - QA";
+        String actualTitle = driver.getTitle();
+        if (actualTitle.equals(expectedTitle)){
+            System.out.println("Landing page Title verification PASSED");
+        } else {
+            System.err.println("Landing page Title verification FAILED");
+        }
     }
+
     @Test
     public static void accesToSearch() throws InterruptedException {
+        // 2.Click magnifier icon  on the right top
         ArrayList<String> positiveData = new ArrayList<>(Arrays.asList("Notes","Talk","Dec 22nd"));
+        BrowserUtils.sleep(2);
 
+       // 3.Search any existing file/folder/user name
         for (String each : positiveData){
-            WebElement searchBox = driver.findElement(By.xpath("//div[@class='header-menu unified-search']"));
+            WebElement searchBox = driver.findElement(By.xpath("//a[@aria-controls]"));
             searchBox.sendKeys(each);
             Thread.sleep(2000);
             searchBox.sendKeys(Keys.ENTER);
+            BrowserUtils.sleep(2);
+
+         // 4. Verify the app displays the expected result option
+            boolean isLocate = driver.findElement(By.xpath("//h3[@class='unified-search__result-line-one']")).isDisplayed();
+
+            if(isLocate){
+               String actualTitle = driver.getTitle();
+
+               if (actualTitle.toLowerCase().contains(each.toLowerCase())){
+                   System.out.println("Expected result option: " + each +"- PASSED!!!");
+               }
+            }
+
+
         }
-        //
+
 
     }
 }
