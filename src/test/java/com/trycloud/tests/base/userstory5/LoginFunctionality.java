@@ -6,7 +6,6 @@ import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.LoginUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,22 +14,20 @@ import java.util.List;
 
 public class LoginFunctionality extends TestBase {
 
-
     @Test
     public void validLogin(){
         String username = ConfigurationReader.getProperty("username");
         LoginUtils.loginToTryCloud(driver, username);
         String expectedTitle = "Dashboard - Trycloud";
-        Assert.assertEquals(expectedTitle,driver.getTitle(),"Invalid Url, Web page not found");
-        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[5]/a"));
+        Assert.assertTrue(driver.getTitle().contains(expectedTitle),"Invalid Url, Web page not found");
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
         String actualTitle = driver.getTitle();
-        System.out.println("actualTitle = " + actualTitle);
-        expectedTitle = "Contacts - Trycloud - QA";
+        expectedTitle = "Contacts - Trycloud";
         WebElement newContactButton = driver.findElement(By.id("new-contact-button"));
         newContactButton.click();
-        Assert.assertEquals(actualTitle,expectedTitle,"Verification of Title FAILED!11");
+        Assert.assertTrue(actualTitle.contains(expectedTitle),"Verification of Title FAILED!11");
 
         Faker faker = new Faker();
 
@@ -68,25 +65,44 @@ public class LoginFunctionality extends TestBase {
         WebElement country = driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[2]/section/div[3]/div/div[8]/input"));
         country.sendKeys(faker.address().country());
 
-        BrowserUtils.sleep(3);
-        verifyContact(driver, companyName);
-
-    }
-    public static void verifyContact(WebDriver driver, String expectedContact){
-
+        BrowserUtils.sleep(5);
         // Create a locator that is returning us all of the lists in the table
         List<WebElement> contactList = driver.findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
         //we need to loop through 'allContacts' List of WebElement and make sure 'expectedName' is in there
         for (WebElement each : contactList) {
-            if (each.getText().contains(expectedContact)) {
-                Assert.assertEquals(expectedContact, each.getText());
+            System.out.println(each.getText());
+            if (each.getText().contains(companyName)){
+                Assert.assertEquals(companyName, each.getText());
                 return;
             }
         }
         //The only condition where the Assert.fail() line below executed is if 'expectedName' is not in the list.
         //Assert.fail(); method will FAIL THE TEST NO MATTER WHAT.
         Assert.fail("The Expected Contact is not in the List.");
+    }
 
+    @Test
+    public void verifyContacts_TC3(){
+        String username = ConfigurationReader.getProperty("username");
+        LoginUtils.loginToTryCloud(driver, username);
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
+        locateContact.click();
+        BrowserUtils.sleep(5);
+        String actualTitle = driver.getTitle();
+        String expectedTitle = "Contacts - Trycloud";
+        Assert.assertTrue(actualTitle.contains(expectedTitle),"Verification of Title FAILED!11");
+        WebElement countContacts = driver.findElement(By.xpath("//*[@id=\"notgrouped\"]/div/div[1]"));
+        System.out.println(countContacts.getText());
+        int count = Integer.parseInt(countContacts.getText());
+
+        if (count<2){
+            System.out.println("At least two contacts should be there in the list");
+        } else {
+            List<WebElement> contactList = driver.findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
+            for (WebElement each : contactList) {
+                System.out.println(each.getText());
+            }
+        }
     }
 
     @Test
