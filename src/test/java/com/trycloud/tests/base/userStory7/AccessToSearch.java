@@ -32,6 +32,14 @@ public class AccessToSearch {
 
         // 1.Login as a user
         LoginUtils.loginToTryCloud(driver, username);
+
+        String expectedTitle = "Files - Trycloud - QA";
+        String actualTitle = driver.getTitle();
+        if (actualTitle.equals(expectedTitle)){
+            System.out.println("Landing page Title verification PASSED");
+        } else {
+            System.err.println("Landing page Title verification FAILED");
+        }
     }
 
     @Test
@@ -50,6 +58,14 @@ public class AccessToSearch {
 
          // 4. Verify the app displays the expected result option
             boolean isLocate = driver.findElement(By.xpath("//h3[@class='unified-search__result-line-one']")).isDisplayed();
+
+            if(isLocate){
+               String actualTitle = driver.getTitle();
+
+               if (actualTitle.toLowerCase().contains(each.toLowerCase())){
+                   System.out.println("Expected result option: " + each +"- PASSED!!!");
+               }
+            }
 
 
         }
