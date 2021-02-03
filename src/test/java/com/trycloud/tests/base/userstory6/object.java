@@ -4,10 +4,10 @@ package com.trycloud.tests.base.userstory6;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.Assert;
+
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -20,7 +20,7 @@ public class object {
     WebDriver driver;
 
     @BeforeMethod
-    public void tryCloudLogin() throws InterruptedException {
+    public void tryCloudLogin() {
         // Open chrome browser
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -55,7 +55,7 @@ public class object {
         System.out.println(driver.getTitle());
 //write "Note"
         driver.findElement(By.xpath("//*[@id=\"note-container\"]/div/div[2]/div/div[1]/div[6]")).sendKeys("Note #1");
-//
+
     }
 
 
