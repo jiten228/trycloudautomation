@@ -20,7 +20,7 @@ public class LoginFunctionality extends TestBase {
     public void validLogin(){
         String username = ConfigurationReader.getProperty("username");
         LoginUtils.loginToTryCloud(driver, username);
-        String expectedTitle = "Files - Trycloud - QA";
+        String expectedTitle = "Dashboard - Trycloud";
         Assert.assertEquals(expectedTitle,driver.getTitle(),"Invalid Url, Web page not found");
         WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[5]/a"));
         locateContact.click();
@@ -77,7 +77,6 @@ public class LoginFunctionality extends TestBase {
         // Create a locator that is returning us all of the lists in the table
         List<WebElement> contactList = driver.findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
         //we need to loop through 'allContacts' List of WebElement and make sure 'expectedName' is in there
-
         for (WebElement each : contactList) {
             if (each.getText().contains(expectedContact)) {
                 Assert.assertEquals(expectedContact, each.getText());
