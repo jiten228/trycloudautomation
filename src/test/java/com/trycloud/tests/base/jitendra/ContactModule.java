@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.userstory5;
+package com.trycloud.tests.base.jitendra;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;
@@ -12,22 +12,31 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class LoginFunctionality extends TestBase {
+public class ContactModule extends TestBase {
+    String expectedTitle, actualTitle;
 
     @Test
-    public void validLogin(){
+    public void Access_Contact_Module_TC1() {
         String username = ConfigurationReader.getProperty("username");
         LoginUtils.loginToTryCloud(driver, username);
-        String expectedTitle = "Dashboard - Trycloud";
-        Assert.assertTrue(driver.getTitle().contains(expectedTitle),"Invalid Url, Web page not found");
         WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
-        String actualTitle = driver.getTitle();
+        actualTitle = driver.getTitle();
         expectedTitle = "Contacts - Trycloud";
+        Assert.assertTrue(actualTitle.contains(expectedTitle), "Verification of Title FAILED!11");
+    }
+
+    @Test
+    public void Add_Contact_TC2() {
+        String username = ConfigurationReader.getProperty("username");
+        LoginUtils.loginToTryCloud(driver, username);
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
+        locateContact.click();
+        BrowserUtils.sleep(5);
         WebElement newContactButton = driver.findElement(By.id("new-contact-button"));
         newContactButton.click();
-        Assert.assertTrue(actualTitle.contains(expectedTitle),"Verification of Title FAILED!11");
+        Assert.assertTrue(actualTitle.contains(expectedTitle), "Verification of Title FAILED!11");
 
         Faker faker = new Faker();
 
@@ -45,7 +54,7 @@ public class LoginFunctionality extends TestBase {
         email.sendKeys(faker.internet().emailAddress());
 
         WebElement poBox = driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[2]/section/div[3]/div/div[2]/input"));
-        poBox.sendKeys(""+faker.number().numberBetween(1,500));
+        poBox.sendKeys("" + faker.number().numberBetween(1, 500));
 
         WebElement address = driver.findElement(By.xpath("//*[@id=\"app-content-wrapper\"]/div[2]/section/div[3]/div/div[3]/input"));
         address.sendKeys(faker.address().streetAddress());
@@ -71,7 +80,7 @@ public class LoginFunctionality extends TestBase {
         //we need to loop through 'allContacts' List of WebElement and make sure 'expectedName' is in there
         for (WebElement each : contactList) {
             System.out.println(each.getText());
-            if (each.getText().contains(companyName)){
+            if (each.getText().contains(companyName)) {
                 Assert.assertEquals(companyName, each.getText());
                 return;
             }
@@ -82,20 +91,20 @@ public class LoginFunctionality extends TestBase {
     }
 
     @Test
-    public void verifyContacts_TC3(){
+    public void verify_Contacts_List_TC3() {
         String username = ConfigurationReader.getProperty("username");
         LoginUtils.loginToTryCloud(driver, username);
         WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
-        String actualTitle = driver.getTitle();
-        String expectedTitle = "Contacts - Trycloud";
-        Assert.assertTrue(actualTitle.contains(expectedTitle),"Verification of Title FAILED!11");
+        actualTitle = driver.getTitle();
+        expectedTitle = "Contacts - Trycloud";
+        Assert.assertTrue(actualTitle.contains(expectedTitle), "Verification of Title FAILED!11");
         WebElement countContacts = driver.findElement(By.xpath("//*[@id=\"notgrouped\"]/div/div[1]"));
         System.out.println(countContacts.getText());
         int count = Integer.parseInt(countContacts.getText());
 
-        if (count<2){
+        if (count < 2) {
             System.out.println("At least two contacts should be there in the list");
         } else {
             List<WebElement> contactList = driver.findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
@@ -103,16 +112,5 @@ public class LoginFunctionality extends TestBase {
                 System.out.println(each.getText());
             }
         }
-    }
-
-    @Test
-    public void invalidLogin(){
-        Faker faker = new Faker();
-        String username = faker.name().username();
-        LoginUtils.loginToTryCloud(driver, username);
-        WebElement locate = driver.findElement(By.xpath("//p[@class='warning wrongPasswordMsg']"));
-        String expectedTitle = "Wrong username or password.";
-        Assert.assertEquals(expectedTitle,locate.getText(),"Invalid Username, Web page not found");
-
     }
 }
