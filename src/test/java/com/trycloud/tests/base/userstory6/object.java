@@ -4,13 +4,13 @@ package com.trycloud.tests.base.userstory6;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.concurrent.TimeUnit;
 
 public class object {
@@ -38,17 +38,32 @@ public class object {
 
         String userName = "User20";
         String password = "Userpass123";
-     //login as a user
+        //1.Login as a user
         driver.findElement(By.xpath("//input[@name='user']")).sendKeys(userName);
-        driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Userpass123");
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
         driver.findElement(By.xpath("//input[@type='submit']")).click();
         Thread.sleep(3000);
 
-        //click "Notes" module
-        driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
+        //2.Click "Notes" module
+      driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
+
+        //3.Verify the page title is "Notes" modules title.
+        System.out.println(driver.getTitle());
+    }
+
+
+    @Test
+    public void sendNotes(){
+
+
+
+
+
+
+
+
 
 
     }
-
 
 }
