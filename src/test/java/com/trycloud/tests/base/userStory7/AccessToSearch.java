@@ -33,7 +33,7 @@ public class AccessToSearch {
         // 1.Login as a user
         LoginUtils.loginToTryCloud(driver, username);
 
-        String expectedTitle = "Dashboard - Trycloud";
+        String expectedTitle = "Dashboard - Trycloud QA";
         String actualTitle = driver.getTitle();
         if (actualTitle.equals(expectedTitle)){
             System.out.println("Landing page Title verification PASSED");
