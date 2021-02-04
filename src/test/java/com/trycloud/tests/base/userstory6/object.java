@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class object {
@@ -32,12 +33,13 @@ public class object {
     }
 
     /*
-    Usernames: User20, User50, User80, User110
+    Usernames: User20http://qa.trycloud.net/index.php/login?clear=1, User50, User80, User110
     Password: UserPass123
      */
 
+
     @Test
-    public void NotesModule() throws InterruptedException {
+    public void NotesModule() throws InterruptedException, IOException {
 //1.Login
         String userName = "User20";
         String password = "Userpass123";
@@ -45,19 +47,19 @@ public class object {
         driver.findElement(By.xpath("//input[@name='user']")).sendKeys(userName);
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys(password);
         driver.findElement(By.xpath("//input[@type='submit']")).click();
-        Thread.sleep(3000);
+
 
         //2.Click "Notes" module
         driver.findElement(By.xpath("//a[@href='/index.php/apps/notes/']")).click();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id=\"notes_new_note\"]")).click();
+
         //3.Verify the page title is "Notes" modules title.
         System.out.println(driver.getTitle());
+
+
 //write "Note"
-        driver.findElement(By.xpath("//*[@id=\"note-container\"]/div/div[2]/div/div[1]/div[6]")).sendKeys("Note #1");
+
+
+
 
     }
-
-
 }
-
