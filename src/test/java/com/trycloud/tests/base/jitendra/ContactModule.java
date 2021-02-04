@@ -17,9 +17,9 @@ public class ContactModule extends TestBase {
 
     @Test
     public void Access_Contact_Module_TC1() {
-        String username = ConfigurationReader.getProperty("username");
+        String username = ConfigurationReader.getProperty("username1");
         LoginUtils.loginToTryCloud(driver, username);
-        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[7]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
         actualTitle = driver.getTitle();
@@ -29,9 +29,9 @@ public class ContactModule extends TestBase {
 
     @Test
     public void Add_Contact_TC2() {
-        String username = ConfigurationReader.getProperty("username");
+        String username = ConfigurationReader.getProperty("username1");
         LoginUtils.loginToTryCloud(driver, username);
-        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[7]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
         WebElement newContactButton = driver.findElement(By.id("new-contact-button"));
@@ -92,9 +92,9 @@ public class ContactModule extends TestBase {
 
     @Test
     public void verify_Contacts_List_TC3() {
-        String username = ConfigurationReader.getProperty("username");
+        String username = ConfigurationReader.getProperty("username1");
         LoginUtils.loginToTryCloud(driver, username);
-        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[6]/a"));
+        WebElement locateContact = driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[7]/a"));
         locateContact.click();
         BrowserUtils.sleep(5);
         actualTitle = driver.getTitle();
