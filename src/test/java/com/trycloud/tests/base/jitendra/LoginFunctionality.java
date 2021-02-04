@@ -14,7 +14,7 @@ public class LoginFunctionality extends TestBase {
 
     @Test
     public void ValidLogin() {
-        String username = ConfigurationReader.getProperty("username");
+        String username = ConfigurationReader.getProperty("username1");
         LoginUtils.loginToTryCloud(driver, username);
         expectedTitle = "Dashboard - Trycloud";
         Assert.assertTrue(driver.getTitle().contains(expectedTitle), "Invalid Url, Web page not found");
