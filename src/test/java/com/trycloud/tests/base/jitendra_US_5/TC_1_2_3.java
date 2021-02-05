@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.jitendra;
+package com.trycloud.tests.base.jitendra_US_5;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class ContactModule extends TestBase {
+public class TC_1_2_3 extends TestBase {
     String expectedTitle, actualTitle;
 
     @Test
