@@ -1,5 +1,9 @@
 package com.trycloud.tests.base.User_Story3;
 
+import com.trycloud.tests.base.TestBase;
+import com.trycloud.tests.utilities.BrowserUtils;
+import com.trycloud.tests.utilities.ConfigurationReader;
+import com.trycloud.tests.utilities.LoginUtils;
 import com.trycloud.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,48 +15,24 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class TC6 {
+public class TC6 extends TestBase {
 
-    public WebDriver driver;
-
-    @BeforeMethod
-    public void setupMethod(){
-
-        driver= WebDriverFactory.getDriver("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-
-
-    }
 
     @Test
-    public void create_folder() throws InterruptedException {
+    public void create_folder()  {
 
-        WebElement inputUserName = driver.findElement(By.id("user"));
-        inputUserName.sendKeys("User20");
+        String userName = ConfigurationReader.getProperty("username");
+        LoginUtils.loginToTryCloud(driver,userName);
 
-        WebElement inputPassword = driver.findElement(By.id("password"));
-        inputPassword.sendKeys("Userpass123");
-
-        WebElement loginButton = driver.findElement(By.xpath("//input[@id='submit-form']"));
-        loginButton.click();
-
-        String expectedTitle = "Files - Trycloud - QA";
-        String actualTitle = driver.getTitle();
-
-        Assert.assertEquals(expectedTitle,actualTitle);
-
-
-        Thread.sleep(3000);
+        BrowserUtils.sleep(3);
 
         driver.findElement(By.xpath("//a[@class='button new']")).click();
-        Thread.sleep(3000);
+        BrowserUtils.sleep(3);
 
         driver.findElement(By.xpath("//span[.='New folder']")).click();
 
         WebElement inputBox = driver.findElement(By.xpath("//input[@id='view13-input-folder']"));
-        Thread.sleep(3000);
+        BrowserUtils.sleep(3);
         inputBox.clear();
 
         inputBox.sendKeys("Ruz");
@@ -66,11 +46,4 @@ public class TC6 {
 
     }
 
-    @AfterMethod
-    public void tearDownMethod() throws InterruptedException {
-
-        Thread.sleep(3000);
-         driver.close();
-         // r
-    }
 }

@@ -26,14 +26,14 @@ public class AccessToSearch {
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.get("http://qa3.trycloud.net");
-        String username = ConfigurationReader.getProperty("username");
+        driver.get(ConfigurationReader.getProperty("webUrl2"));
+        String username = ConfigurationReader.getProperty("username1");
         BrowserUtils.sleep(2);
 
         // 1.Login as a user
         LoginUtils.loginToTryCloud(driver, username);
 
-        String expectedTitle = "Dashboard - Trycloud";
+        String expectedTitle = "Dashboard - Trycloud QA";
         String actualTitle = driver.getTitle();
         if (actualTitle.equals(expectedTitle)){
             System.out.println("Landing page Title verification PASSED");

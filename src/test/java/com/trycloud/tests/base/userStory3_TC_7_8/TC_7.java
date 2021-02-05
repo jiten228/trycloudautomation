@@ -1,43 +1,34 @@
 package com.trycloud.tests.base.userStory3_TC_7_8;
 
-import com.trycloud.tests.utilities.BrowserUtils;
-import com.trycloud.tests.utilities.ConfigurationReader;
-import com.trycloud.tests.utilities.LoginUtils;
-import com.trycloud.tests.utilities.WebDriverFactory;
+import com.trycloud.tests.utilities.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class TC_7 {
-    static WebDriver driver;
+
     // Test case #7 - verify users can upload a file inside a folder
-    @BeforeMethod
-    public void setupMethod(){
 
-        driver = WebDriverFactory.getDriver("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-        String username = ConfigurationReader.getProperty("username");
-        BrowserUtils.sleep(2);
-
-        // 1.Login as a user
-        LoginUtils.loginToTryCloud(driver, username);
-
-        String expectedTitle = "Files - Trycloud - QA";
-        String actualTitle = driver.getTitle();
-        if (actualTitle.equals(expectedTitle)){
-            System.out.println("Landing page Title verification PASSED");
-        } else {
-            System.err.println("Landing page Title verification FAILED");
-        }
-    }
 
     // 2.Choose a folder from the page
     @Test
     public static void uploadFileInsideFolder(){
+        Driver.getDriver().get("http://qa3.trycloud.net");
+
+        WebElement folder = Driver.getDriver().findElement(By.xpath("//a[@aria-label='Files']"));
+        folder.click();
+        WebElement buttonNew = Driver.getDriver().findElement(By.xpath("//a[@class='button new']"));
+        buttonNew.click();
+        WebElement uploadFileButton = Driver.getDriver().findElement(By.xpath("//label[@data-action='upload']"));
+        uploadFileButton.click();
+
+        String path = "/Users/vita/Desktop/Selenium/Dec 22nd.pdf";
+
+
 
     }
 
