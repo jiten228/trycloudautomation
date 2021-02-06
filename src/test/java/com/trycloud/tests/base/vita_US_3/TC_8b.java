@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.userStory3_TC_7_8;
+package com.trycloud.tests.base.vita_US_3;
 
 import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
