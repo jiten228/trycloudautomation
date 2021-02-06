@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TC_1_2_3 extends TestBase {
     String expectedTitle, actualTitle;
@@ -84,17 +85,29 @@ public class TC_1_2_3 extends TestBase {
     @Test(dependsOnMethods = {"Access_Contact_Module_TC1", "Add_Contact_TC2"})
     public void verify_Contacts_List_TC3() {
 
-        WebElement countContacts = Driver.getDriver().findElement(By.xpath("//*[@id=\"notgrouped\"]/div/div[1]"));
-        System.out.println(countContacts.getText());
-        int count = Integer.parseInt(countContacts.getText());
-
-        if (count < 2) {
-            System.out.println("At least two contacts should be there in the list");
-        } else {
-            List<WebElement> contactList = Driver.getDriver().findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
-            for (WebElement each : contactList) {
-                System.out.println(each.getText());
-            }
+        List<WebElement> contactList = Driver.getDriver().findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
+        Assert.assertTrue(contactList.size()>1, "At least two contacts should be in the list");
+        for (WebElement each : contactList) {
+            System.out.println(each.getText());
         }
+
+//        try{
+//            Driver.getDriver().findElement(By.xpath("//h2[@class='empty-content__title']"));
+//            //Assert.assertTrue(noContactsYet.isDisplayed());
+//        } catch (NoSuchElementException e){
+//                List<WebElement> contactList = Driver.getDriver().findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
+//            }
+//        WebElement countContacts = Driver.getDriver().findElement(By.xpath("//*[@id=\"notgrouped\"]/div/div[1]"));
+//        System.out.println(countContacts.getText());
+//        int count = Integer.parseInt(countContacts.getText());
+//
+//        if (count < 2) {
+//            System.out.println("At least two contacts should be there in the list");
+//        } else {
+//            List<WebElement> contactList = Driver.getDriver().findElements(By.xpath("//*[@class='app-content-list-item-line-one']"));
+//            for (WebElement each : contactList) {
+//                System.out.println(each.getText());
+//            }
+//        }
     }
 }
