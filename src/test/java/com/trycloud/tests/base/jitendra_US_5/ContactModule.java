@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.jitendra;
+package com.trycloud.tests.base.jitendra_US_5;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;

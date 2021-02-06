@@ -21,10 +21,13 @@ public class TC6 extends TestBase {
     @Test
     public void create_folder()  {
 
-        String userName = ConfigurationReader.getProperty("username");
+        String userName = ConfigurationReader.getProperty("username2");
         LoginUtils.loginToTryCloud(driver,userName);
 
         BrowserUtils.sleep(3);
+
+        driver.findElement(By.xpath("//*[@id=\"appmenu\"]/li[2]/a")).click();
+        BrowserUtils.sleep(2);
 
         driver.findElement(By.xpath("//a[@class='button new']")).click();
         BrowserUtils.sleep(3);
@@ -36,6 +39,8 @@ public class TC6 extends TestBase {
         inputBox.clear();
 
         inputBox.sendKeys("Ruz");
+        BrowserUtils.sleep(2);
+
 
         driver.findElement(By.xpath("//input[@class='icon-confirm']")).click();
 
