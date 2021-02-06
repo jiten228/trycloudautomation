@@ -25,7 +25,7 @@ public class AccessToSearch {
         String username = ConfigurationReader.getProperty("username1");
         LoginUtils.loginToTryCloud(Driver.getDriver(), username);
         // 2.Click magnifier icon  on the right top
-        ArrayList<String> positiveData = new ArrayList<>(Arrays.asList("Talk","Contacts"));
+        ArrayList<String> positiveData = new ArrayList<>(Arrays.asList("Talk","Files","Contacts"));
 
         // 3.Search any existing file/folder/user name
         for (String each : positiveData){
