@@ -1,13 +1,9 @@
-package com.trycloud.tests.base.userStory3_TC_7_8;
+package com.trycloud.tests.base.vita_US_3;
 
 import com.trycloud.tests.utilities.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class TC_7 {
 

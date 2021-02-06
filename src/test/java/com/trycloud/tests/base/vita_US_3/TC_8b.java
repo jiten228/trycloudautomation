@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.userStory3_TC_7_8;
+package com.trycloud.tests.base.vita_US_3;
 
 import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TC_8a {
+public class TC_8b {
     static WebDriver driver;
 
-    // Test case #8 - verify users can delete a file/folder.
+    // Test case #8 - verify users can write comments to  files/folders.
 
     @BeforeMethod
     public void setupMethod(){
@@ -36,10 +36,12 @@ public class TC_8a {
         }
     }
 }
-/*
 
-2.Click action-icon from any file on the page
-3.Choose “delete files” option
-4.Click deleted files on the left bottom corner
-5.Verify the deleted file is displayed no the page. (Pre-condition: there should be at least 1 file is uploaded inside files page)
+/*
+ 2.Click action-icon from any file on the page
+ 3.Click details
+ 4.Write a comment inside to the input box
+ 5.Click the submit button to post it
+ 6.Verify the comment is displayed in the comment section.
+  (Pre-condition: there should be at least 1 file/foler is uploaded inside files page)
  */
