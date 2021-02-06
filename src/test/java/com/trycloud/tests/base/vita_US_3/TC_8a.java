@@ -1,34 +1,31 @@
 package com.trycloud.tests.base.vita_US_3;
 
-import com.trycloud.tests.utilities.BrowserUtils;
-import com.trycloud.tests.utilities.ConfigurationReader;
-import com.trycloud.tests.utilities.LoginUtils;
-import com.trycloud.tests.utilities.WebDriverFactory;
+import com.trycloud.tests.utilities.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
 public class TC_8a {
-    static WebDriver driver;
+
 
     // Test case #8 - verify users can delete a file/folder.
+    @Test
+    public void delete_fileFolder() {
+    String url = ConfigurationReader.getProperty("webUrl3");
+        Driver.getDriver().get(url);
 
-    @BeforeMethod
-    public void setupMethod(){
+    // 1.Login as a user
+    String username = ConfigurationReader.getProperty("username1");
+        LoginUtils.loginToTryCloud(Driver.getDriver(), username);
 
-        driver = WebDriverFactory.getDriver("chrome");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-        String username = ConfigurationReader.getProperty("username");
-        BrowserUtils.sleep(2);
 
-        // 1.Login as a user
-        LoginUtils.loginToTryCloud(driver, username);
+    // 1.Login as a user
+        LoginUtils.loginToTryCloud(Driver.getDriver(), username);
 
         String expectedTitle = "Files - Trycloud - QA";
-        String actualTitle = driver.getTitle();
+        String actualTitle = Driver.getDriver().getTitle();
         if (actualTitle.equals(expectedTitle)){
             System.out.println("Landing page Title verification PASSED");
         } else {
