@@ -52,7 +52,7 @@ public void LogInSuccessfully() {
     @AfterMethod
     public void teardownMethod() throws InterruptedException {
         Thread.sleep(5000);
-        driver.close();
+     //   driver.close();
     }
 
 
