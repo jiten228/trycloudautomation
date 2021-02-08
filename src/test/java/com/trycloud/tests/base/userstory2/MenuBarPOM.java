@@ -119,7 +119,7 @@ WebDriver driver;
 
           @AfterMethod
           public void teardownMethod() throws InterruptedException {
-               Thread.sleep(5000);
+               Thread.sleep(4000);
                //   driver.close();
           }
 
