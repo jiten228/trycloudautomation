@@ -5,16 +5,17 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 public class SearchItem {
@@ -41,7 +42,7 @@ public class SearchItem {
 
 
     @Test
-    public void SearchItem() throws InterruptedException, IOException {
+    public void SearchItem() throws InterruptedException {
         //1.Login
         String userName = "User20";
         String password = "Userpass123";
@@ -62,12 +63,12 @@ public class SearchItem {
 
         //3.Click "Search" module
 
-        driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div[1]")).click();
+        driver.findElement(By.xpath("//*[@id='header']/div[2]/div[1]")).click();
 
         //4.Search any existing file/module
 
-        driver.findElement(By.xpath("//*[@id=\"header-menu-unified-search\"]/div[2]/div[1]/form/input")).sendKeys("talk");
-        driver.findElement(By.xpath("//div[@id=\"header-menu-unified-search\"]/div[2]/ul[1]/li[1]/a/div")).click();
+        driver.findElement(By.xpath("//*[@id='header-menu-unified-search']/div[2]/div[1]/form/input")).sendKeys("talk");
+        driver.findElement(By.xpath("//div[@id='header-menu-unified-search']/div[2]/ul[1]/li[1]/a/div")).click();
         Thread.sleep(1000);
 
         //2.Title Verification
@@ -81,5 +82,12 @@ public class SearchItem {
 
 
 
+
+    }
+
+    @AfterMethod
+    public void closing(){
+        driver.close();
+        //done
     }
 }

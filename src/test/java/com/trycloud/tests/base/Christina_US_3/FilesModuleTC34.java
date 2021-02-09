@@ -1,17 +1,12 @@
-package com.trycloud.tests.base.Christina;
+package com.trycloud.tests.base.Christina_US_3;
 
-import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;
-import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
 import com.trycloud.tests.utilities.LoginUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class FilesModuleTC34 extends TestBase {
