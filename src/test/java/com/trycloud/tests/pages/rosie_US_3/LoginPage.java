@@ -12,14 +12,25 @@ public class LoginPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(id = "user")
+    @FindBy(name = "user")
     public WebElement username;
 
-    @FindBy(id = "password")
+    @FindBy(name = "password")
     public WebElement password;
 
     @FindBy(id = "submit-form")
     public WebElement loginButton;
+
+    @FindBy(xpath ="//p[@class='warning wrongPasswordMsg']" )
+    public WebElement errorMessage;
+
+    @FindBy(xpath = "//div[@id='expand']")
+    public WebElement userButton;
+
+    @FindBy(xpath = "//li[@data-id='logout']")
+    public WebElement logoutButton;
+
+
 
 
 
