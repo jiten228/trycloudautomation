@@ -11,6 +11,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
 public class TC5_TC6 extends TestBase {
 
 
@@ -50,7 +54,7 @@ public class TC5_TC6 extends TestBase {
     }
 
     @Test
-    public void upload_file() {
+    public void upload_file() throws AWTException {
 
 
         Driver.getDriver().findElement(By.xpath("//*[@id=\"appmenu\"]/li[2]/a")).click();
@@ -60,17 +64,21 @@ public class TC5_TC6 extends TestBase {
         BrowserUtils.sleep(2);
 
 
-        action = new Actions(Driver.getDriver());
+       // action = new Actions(Driver.getDriver());
 
-//        String filename = "/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf";
-//        File file = new File(filename);
-//        String path = file.getAbsolutePath();
         WebElement upload = Driver.getDriver().findElement(By.xpath("//label[@for='file_upload_start']"));
+        upload.click();
 
-        action.moveToElement(upload).sendKeys("/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf").perform();
+//        String file = "/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf";
+//        action.moveToElement(upload).sendKeys(file).release().perform();
+
+        StringSelection ss = new StringSelection("/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+        //imitate mouse events like ENTER, CTRL+C, CTRL+V
+        Robot robot = new Robot();
+        robot.delay(250);
 
 
-        // file.sendKeys("/Users/rosie/Desktop/my notes/Something");
 
     }
 
