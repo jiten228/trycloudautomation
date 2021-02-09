@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.userstory4;
+package com.trycloud.tests.base.semsime_US_4;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
