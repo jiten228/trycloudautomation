@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.Christina;
+package com.trycloud.tests.base.Christina_US_3;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.utilities.BrowserUtils;
@@ -51,6 +51,8 @@ public class LogInFunction  {
             String actualTitle = driver.getTitle();
 
             Assert.assertEquals(expectedTitle, actualTitle, "Title verification failed");
+            BrowserUtils.sleep(2);
+            driver.close();
 
         }
     }
@@ -67,8 +69,7 @@ public class LogInFunction  {
         //checking if error message is displayed
         WebElement errorMessage = driver.findElement(By.xpath("//p[@class='warning wrongPasswordMsg']"));
         Assert.assertTrue(errorMessage.isDisplayed(), "Wrong username or password message not displayed");
-
-
-driver.close();
+        BrowserUtils.sleep(2);
+        driver.close();
     }
 }
