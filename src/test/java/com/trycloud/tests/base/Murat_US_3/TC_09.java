@@ -1,28 +1,21 @@
-package com.trycloud.tests.base.userstory3;
+package com.trycloud.tests.base.Murat_US_3;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
 import com.trycloud.tests.utilities.LoginUtils;
-import com.trycloud.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.sql.Driver;
-import java.util.concurrent.TimeUnit;
 
 public class TC_09 extends TestBase {
 
     @Test
     public void validloginFunctionality() {
 
-        driver.get(ConfigurationReader.getProperty("webUrl"));
+        driver.get(ConfigurationReader.getProperty("webUrl1"));
 
         String[] userNames = {"User20", "User50", "User80", "User110"};
 
@@ -45,7 +38,7 @@ public class TC_09 extends TestBase {
     @Test
     public void invalidloginFunctionality() {
 
-        driver.get(ConfigurationReader.getProperty("webUrl"));
+        driver.get(ConfigurationReader.getProperty("webUrl1"));
 
         Faker faker = new Faker();
         driver.findElement(By.id("user")).sendKeys(faker.name().username());
@@ -62,7 +55,7 @@ public class TC_09 extends TestBase {
     @Test
     public void testCase_9(){
         //Test case #9 - verify users can change the app Settings
-        LoginUtils.loginToTryCloud(driver, ConfigurationReader.getProperty("username"));
+        LoginUtils.loginToTryCloud(driver, ConfigurationReader.getProperty("username1"));
 
         //access to files module
         driver.findElement(By.cssSelector("li[data-id='files']>a>svg>image")).click();
