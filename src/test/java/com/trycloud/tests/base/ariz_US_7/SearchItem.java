@@ -82,5 +82,11 @@ public class SearchItem {
 
 
 
+
+    }
+
+    @AfterMethod
+    public void closing(){
+        driver.close();
     }
 }
