@@ -5,7 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-import java.io.IOException;
+
 import java.util.concurrent.TimeUnit;
 
 public class SearchItem {
@@ -42,7 +42,7 @@ public class SearchItem {
 
 
     @Test
-    public void SearchItem() throws InterruptedException, IOException {
+    public void SearchItem() throws InterruptedException {
         //1.Login
         String userName = "User20";
         String password = "Userpass123";
@@ -88,5 +88,6 @@ public class SearchItem {
     @AfterMethod
     public void closing(){
         driver.close();
+        //done
     }
 }
