@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.userstory6;
+package com.trycloud.tests.base.ariz_US_6;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class object {
+public class Notes {
 
 
     WebDriver driver;
@@ -33,7 +33,7 @@ public class object {
     }
 
     /*
-    Usernames: User20http://qa.trycloud.net/index.php/login?clear=1, User50, User80, User110
+    Usernames:User50, User80, User110
     Password: UserPass123
      */
 
@@ -56,7 +56,7 @@ public class object {
         System.out.println(driver.getTitle());
 
 
-//write "Note"
+   //write "Note"
 
 
 

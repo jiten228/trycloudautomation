@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class LoginUtils {
 
     public static void loginToTryCloud(WebDriver driver, String username){
-        driver.get(ConfigurationReader.getProperty("webUrl1"));
+        driver.get(ConfigurationReader.getProperty("webUrl3"));
         // Enter Username
         WebElement inputUsername = driver.findElement(By.id("user"));
         inputUsername.sendKeys(username);
