@@ -38,8 +38,8 @@ public class AccessToSearch {
             BrowserUtils.sleep(1);
             searchField.sendKeys(Keys.ENTER);
             Driver.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            WebElement searchResult = Driver.getDriver().findElement(By.xpath("//span[@class='unified-search__result-content']"));
-            searchResult.click();
+            WebElement result = Driver.getDriver().findElement(By.xpath("//span[@class='unified-search__result-content']"));
+            result.click();
             Thread.sleep(5);
 
             // 4. Verify the app displays the expected result option
