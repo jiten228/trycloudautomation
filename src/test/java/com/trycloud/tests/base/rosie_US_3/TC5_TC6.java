@@ -1,5 +1,7 @@
 package com.trycloud.tests.base.rosie_US_3;
 
+import com.github.javafaker.Faker;
+
 import com.trycloud.tests.base.jitendra_US_5.TestBase;
 import com.trycloud.tests.pages.rosie_US_3.AllFilesPage;
 import com.trycloud.tests.pages.rosie_US_3.HomePage;
@@ -17,6 +19,9 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.*;
+import java.util.List;
 
 public class TC5_TC6 extends TestBase {
 
@@ -25,46 +30,46 @@ public class TC5_TC6 extends TestBase {
 
 
     @Test
-    public void create_folder()  {
+    public void create_folder() {
 
 
         homePage.filesButton.click();
-       // Driver.getDriver().findElement(By.xpath("//*[@id=\"appmenu\"]/li[2]/a")).click();
         BrowserUtils.sleep(2);
-
         allFilesPage.newButton.click();
-        //Driver.getDriver().findElement(By.xpath("//a[@class='button new']")).click();
         BrowserUtils.sleep(3);
-
         allFilesPage.newFolder.click();
-        //Driver.getDriver().findElement(By.xpath("//span[.='New folder']")).click();
-
         allFilesPage.inputBoxFolder.clear();
-        //WebElement inputBox = Driver.getDriver().findElement(By.xpath("//input[@id='view13-input-folder']"));
         BrowserUtils.sleep(3);
 
-        allFilesPage.inputBoxFolder.sendKeys("Ruz");
+        Faker faker = new Faker();
 
-       // inputBox.sendKeys("Ruz");
+        String name = faker.name().name();
+
+        allFilesPage.inputBoxFolder.sendKeys(name);
+
         BrowserUtils.sleep(2);
-
 
         allFilesPage.confirmButtonFolder.click();
-       // Driver.getDriver().findElement(By.xpath("//input[@class='icon-confirm']")).click();
+
+        List<WebElement> list = new ArrayList<>();
+        list.addAll(Driver.getDriver().findElements(By.id("fileList")));
+
+        for (WebElement each : list) {
+            if (each.getText().contains(name)) {
+                Assert.assertEquals(name, each.getText());
+                return;
+            }
+        }
 
 
-        //WebElement folder = Driver.getDriver().findElement(By.xpath("//span[.='Ruz']"));
-
-        Assert.assertTrue(allFilesPage.createdFolder.isDisplayed());
-
-        BrowserUtils.sleep(1);
-        allFilesPage.selectBox.click();
-        //Driver.getDriver().findElement(By.xpath("(//label[contains(@for,'select-files')])[1]")).click();
-        BrowserUtils.sleep(1);
-        allFilesPage.actionsButton.click();
-        //Driver.getDriver().findElement(By.xpath("//span[.='Actions']")).click();
-        allFilesPage.deleteButton.click();
-        //Driver.getDriver().findElement(By.xpath("(//span[.='Delete'])[1]")).click();
+//        BrowserUtils.sleep(1);
+//        allFilesPage.selectBox.click();
+//        //Driver.getDriver().findElement(By.xpath("(//label[contains(@for,'select-files')])[1]")).click();
+//        BrowserUtils.sleep(1);
+//        allFilesPage.actionsButton.click();
+//        //Driver.getDriver().findElement(By.xpath("//span[.='Actions']")).click();
+//        allFilesPage.deleteButton.click();
+//        //Driver.getDriver().findElement(By.xpath("(//span[.='Delete'])[1]")).click();
 
     }
 
@@ -72,35 +77,88 @@ public class TC5_TC6 extends TestBase {
     public void upload_file() throws AWTException {
 
         homePage.filesButton.click();
-        //Driver.getDriver().findElement(By.xpath("//*[@id=\"appmenu\"]/li[2]/a")).click();
         BrowserUtils.sleep(2);
 
         allFilesPage.newButton.click();
-        //Driver.getDriver().findElement(By.xpath("//a[@class='button new']")).click();
         BrowserUtils.sleep(2);
 
+        allFilesPage.uploadFile.click();
 
-       // action = new Actions(Driver.getDriver());
+        File file = new File("/Users/rosie/Desktop/Screen Shot 2021-02-08 at 3.17.51 PM.png");
+        StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
 
-        allFilesPage.uploadFile.sendKeys("/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf");
-       // WebElement upload = Driver.getDriver().findElement(By.xpath("//label[@for='file_upload_start']"));
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
-
-//        String file = "/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf";
-//        action.moveToElement(upload).sendKeys(file).release().perform();
-
-        StringSelection ss = new StringSelection("/Users/rosie/Desktop/Softskill class/Other testings/Other testings.pdf");
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-        //imitate mouse events like ENTER, CTRL+C, CTRL+V
         Robot robot = new Robot();
-        robot.delay(250);
-        robot.mouseMove(640,360);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        // Cmd + Tab is needed since it launches a Java app and the browser looses focus
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_TAB);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_TAB);
+
+        robot.delay(500);
+
+        //Open Goto window
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_SHIFT);
+
+        robot.keyPress(KeyEvent.VK_G);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_SHIFT);
+
+        robot.keyRelease(KeyEvent.VK_G);
+
+        //Paste the clipboard value
+
+        robot.keyPress(KeyEvent.VK_META);
+
+        robot.keyPress(KeyEvent.VK_V);
+
+        robot.keyRelease(KeyEvent.VK_META);
+
+        robot.keyRelease(KeyEvent.VK_V);
+
+        //Press Enter key to close the Goto window and Upload window
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        robot.delay(500);
+
+        robot.keyPress(KeyEvent.VK_S);
+
+        robot.keyRelease(KeyEvent.VK_S);
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+        List<WebElement> list = new ArrayList<>();
+        list.addAll(Driver.getDriver().findElements(By.id("fileList")));
+
+        try {
 
 
+        for (WebElement each : list) {
+            if (each.getText().contains((CharSequence) file)) {
+                Assert.assertEquals(file, each.getText());
+                return;
+            }
 
+
+        }
+    }catch (ClassCastException e){
+
+        }
     }
-
-
 }

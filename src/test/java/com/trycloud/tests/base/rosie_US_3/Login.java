@@ -19,20 +19,19 @@ public class Login {
     String expectedTitle;
 
 
-//    @BeforeMethod
-//    public void setup() {
-//
-//
-//        Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
-//
-//    }
+    @BeforeMethod
+    public void setup() {
+
+
+        Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
+
+    }
 
     @Test
     public void login_functionality() {
 
-        Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
+        // Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
 
-        //LoginPage loginPage = new LoginPage();
         String username = ConfigurationReader.getProperty("username1");
         loginPage.username.sendKeys(username);
         String password = ConfigurationReader.getProperty("password");
@@ -47,17 +46,15 @@ public class Login {
         BrowserUtils.sleep(2);
 
 
-
-
     }
 
     @Test
     public void login_with_negative_data() {
 
-        Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
+        // Driver.getDriver().get(ConfigurationReader.getProperty("webUrl3"));
 
         Faker faker = new Faker();
-        //LoginPage loginPage = new LoginPage();
+
         String username = faker.name().username();
         loginPage.username.sendKeys(username);
         String password = faker.internet().password();
@@ -65,15 +62,13 @@ public class Login {
         loginPage.loginButton.click();
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
 
-       loginPage.username.clear();
-
+        loginPage.username.clear();
 
 
     }
 
     @Test
     public void test_with_all_data() {
-
 
 
         ArrayList<String> list = new ArrayList<>(Arrays.asList("user20", "user50", "user80", "user110"));
@@ -86,7 +81,7 @@ public class Login {
             BrowserUtils.sleep(2);
             loginPage.loginButton.click();
             expectedTitle = "Dashboard - Trycloud QA";
-            Assert.assertEquals(Driver.getDriver().getTitle(),expectedTitle);
+            Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
 
             loginPage.userButton.click();
             BrowserUtils.sleep(2);
@@ -97,14 +92,14 @@ public class Login {
         }
 
 
-   }
+    }
 
-//    @AfterMethod
-//    public void close() {
-//
-//        BrowserUtils.sleep(3);
-//
-//
-//    }
+    @AfterClass
+    public void close() {
+
+        BrowserUtils.sleep(3);
+        Driver.closeDriver();
+
+    }
 
 }
