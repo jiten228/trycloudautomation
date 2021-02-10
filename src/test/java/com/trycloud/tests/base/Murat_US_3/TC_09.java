@@ -2,74 +2,49 @@ package com.trycloud.tests.base.Murat_US_3;
 
 import com.github.javafaker.Faker;
 import com.trycloud.tests.base.TestBase;
+import com.trycloud.tests.pages.Murat_US_3.HomePage;
+import com.trycloud.tests.pages.Murat_US_3.LoginPage;
 import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
+import com.trycloud.tests.utilities.Driver;
 import com.trycloud.tests.utilities.LoginUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-public class TC_09 extends TestBase {
+public class TC_09 {
+
 
     @Test
-    public void validloginFunctionality() {
-
-        driver.get(ConfigurationReader.getProperty("webUrl1"));
-
-        String[] userNames = {"User20", "User50", "User80", "User110"};
-
-        for (String each : userNames) {
-            driver.findElement(By.id("user")).sendKeys(each);
-            driver.findElement(By.id("password")).sendKeys(ConfigurationReader.getProperty("password"));
-            driver.findElement(By.id("submit-form")).click();
-
-            String expectedTitle = "Files - Trycloud - QA";
-            String actualTitle = driver.getTitle();
-
-            Assert.assertEquals(expectedTitle, actualTitle, "Title verification failed");
-
-            driver.findElement(By.xpath("//img[@height='32']")).click();
-            driver.findElement(By.xpath("//img[@src='/core/img/actions/logout.svg?v=9251f518']")).click();
-
-        }
-    }
-
-    @Test
-    public void invalidloginFunctionality() {
-
-        driver.get(ConfigurationReader.getProperty("webUrl1"));
-
-        Faker faker = new Faker();
-        driver.findElement(By.id("user")).sendKeys(faker.name().username());
-        driver.findElement(By.id("password")).sendKeys(faker.internet().password());
-        driver.findElement(By.id("submit-form")).click();
-
-        WebElement errorMessage = driver.findElement(By.xpath("//p[@class='warning wrongPasswordMsg']"));
-        System.out.println(errorMessage.getText());
-        Assert.assertTrue(errorMessage.isDisplayed(), "Wrong username or password message not displayed");
-
-
-    }
-
-    @Test
-    public void testCase_9(){
+    public void testCase_9() {
         //Test case #9 - verify users can change the app Settings
-        LoginUtils.loginToTryCloud(driver, ConfigurationReader.getProperty("username1"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("webUrl1"));
+
+        LoginPage loginPage = new LoginPage();
+        HomePage homePage = new HomePage();
+
+        loginPage.loginUsername.sendKeys(ConfigurationReader.getProperty("username1"));
+        loginPage.loginPassword.sendKeys(ConfigurationReader.getProperty("password"));
+        loginPage.loginButton.click();
 
         //access to files module
-        driver.findElement(By.cssSelector("li[data-id='files']>a>svg>image")).click();
-        //setting button
-        driver.findElement(By.className("settings-button")).click();
+        homePage.filesModule.click();
+
+        //setting buttons
+        homePage.settingButton.click();
         BrowserUtils.sleep(1);
 
-        WebElement button1 = driver.findElement(By.xpath("//label[@for='showRichWorkspacesToggle']"));
+        WebElement button1 = homePage.button1;
         button1.click();
         BrowserUtils.sleep(1);
-        WebElement button2 = driver.findElement(By.xpath("//label[@for='recommendationsEnabledToggle']"));
+
+        WebElement button2 = homePage.button2;
         button2.click();
         BrowserUtils.sleep(1);
-        WebElement button3 = driver.findElement(By.xpath("//label[@for='showhiddenfilesToggle']"));
+
+        WebElement button3 = homePage.button3;
         button3.click();
         BrowserUtils.sleep(2);
 
@@ -80,8 +55,12 @@ public class TC_09 extends TestBase {
 
     }
 
+    @AfterMethod
+    public void tearDownMethod() {
+        BrowserUtils.sleep(1);
+        Driver.closeDriver();
 
 
+    }
 
 }
-
