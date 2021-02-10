@@ -1,5 +1,7 @@
 package com.trycloud.tests.base.vita_US_7;
 
+import com.trycloud.tests.pages.Vita_US_1.LoginPage;
+import com.trycloud.tests.pages.Vita_US_7.HomePage;
 import com.trycloud.tests.utilities.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -18,6 +20,9 @@ public class AccessToSearch {
 
     @Test
     public static void accesToSearch() throws InterruptedException {
+        //Creating the object of the class to be able to reach web elements from that class
+        HomePage homePage = new HomePage();
+
         String url = ConfigurationReader.getProperty("webUrl3");
         Driver.getDriver().get(url);
 
@@ -29,17 +34,16 @@ public class AccessToSearch {
 
         // 3.Search any existing file/folder/user name
         for (String each : positiveData){
-            Driver.getDriver().findElement(By.xpath("//*[@id=\"header\"]/div[2]/div[1]/a")).click();
-            Thread.sleep(2000);
-            WebElement searchField = Driver.getDriver().findElement(By.xpath("//input[@type='search']"));
-            BrowserUtils.sleep(1);
+            homePage.searchButton.click();
+            Driver.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            WebElement searchField = homePage.searchField;
+            Driver.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);;
             searchField.click();
             searchField.sendKeys(each);
-            BrowserUtils.sleep(1);
+            Thread.sleep(2);
             searchField.sendKeys(Keys.ENTER);
             Driver.getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-            WebElement result = Driver.getDriver().findElement(By.xpath("//span[@class='unified-search__result-content']"));
-            result.click();
+            homePage.searchResult.click();
             Thread.sleep(5);
 
             // 4. Verify the app displays the expected result option

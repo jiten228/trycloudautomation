@@ -30,7 +30,7 @@ public class LoginPage {
     @FindBy(xpath = "//li[@data-id='logout']")
     public WebElement logoutButton;
 
-    @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
+    @FindBy(className ="warning wrongPasswordMsg")
     public WebElement warningMessage;
 
 }
