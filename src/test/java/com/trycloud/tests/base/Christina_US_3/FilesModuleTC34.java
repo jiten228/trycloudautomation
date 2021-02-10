@@ -6,6 +6,7 @@ import com.trycloud.tests.utilities.ConfigurationReader;
 import com.trycloud.tests.utilities.Driver;
 import com.trycloud.tests.utilities.LoginUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.ui.Select;
@@ -13,11 +14,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class FilesModuleTC34 extends TestBase {
-    String expectedTitle, actualTitle;
+public class FilesModuleTC34 extends TestBase{
+
 
   @Test
-  public void Test_Case3_Add_Files_to_Favorites(){
+  public void Test_Case3_Add_Files_to_Favorites () throws InterruptedException {
+
+      String expectedTitle, actualTitle;
 
       String username = ConfigurationReader.getProperty("username3");
       LoginUtils.loginToTryCloud(driver, username);
@@ -28,17 +31,19 @@ public class FilesModuleTC34 extends TestBase {
 
       actualTitle = driver.getTitle();
       expectedTitle = "Files - Trycloud QA";
-      Assert.assertTrue(actualTitle.contains(expectedTitle), "Verification of Title FAILED!");
+      Assert.assertTrue(actualTitle.contains(expectedTitle), "Verification of Title Passed!");
 
 
         //Click action-icon from any file on the page
-      WebElement actionIcon = Driver.getDriver().findElement(By.xpath("//a[@class='action action-menu permanent'][1]"));
+      WebElement actionIcon = driver.findElement(By.xpath("//a[@class='action action-menu permanent'][1]"));
+      //System.out.println("actionIcon = " + actionIcon);
       actionIcon.click();
 
       //Choose “Add to Favorites” option
-      Select dropdown= new Select(driver.findElement(By.xpath("//*[@class='icon icon-starred']")));
-      dropdown.selectByVisibleText("Add to favorites");
-
+      WebElement addtoFavorites =driver.findElement(By.xpath("//*[@class='icon icon-starred']"));
+     // Select dropdown= new Select(driver.findElement(By.xpath("//*[@class='icon icon-starred']")));
+      //dropdown.getFirstSelectedOption();
+      Thread.sleep(2000);
 
       //4. Click “Favorites” sub-module on the left side
       WebElement favorites= driver.findElement(By.xpath("//*[@class='nav-icon-favorites svg']"));
