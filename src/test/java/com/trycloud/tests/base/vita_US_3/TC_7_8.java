@@ -132,9 +132,8 @@ public class TC_7_8 {
         // (Pre-condition: there should be at least 1 file/foler is uploaded inside files page)
 
         String expectedResult = "New Project created";
-        String actualResult = filesPage.commentAfter.getText();
+        String actualResult = filesPage.comment.getText();
 
-
-        Assert.assertFalse(actualResult.equals(expectedResult));
+        Assert.assertTrue(actualResult.contains(expectedResult));
     }
 }
