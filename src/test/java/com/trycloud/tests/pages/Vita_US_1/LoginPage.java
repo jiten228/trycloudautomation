@@ -24,4 +24,13 @@ public class LoginPage {
     @FindBy(id = "submit-form")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//div[@id='expand']")
+    public WebElement settingsButton;
+
+    @FindBy(xpath = "//li[@data-id='logout']")
+    public WebElement logoutButton;
+
+    @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
+    public WebElement warningMessage;
+
 }
