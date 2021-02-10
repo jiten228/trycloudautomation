@@ -1,85 +1,61 @@
 package com.trycloud.tests.base.semsime_US_4;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
+
+import com.trycloud.tests.pages.semsime_US_4.HomePage;
+import com.trycloud.tests.pages.semsime_US_4.TalkModulePage;
+import com.trycloud.tests.utilities.BrowserUtils;
+import com.trycloud.tests.utilities.ConfigurationReader;
+import com.trycloud.tests.utilities.Driver;
+import com.trycloud.tests.utilities.LoginUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
 public class TalksModule {
-    public static void main(String[] args) throws InterruptedException {
+    @Test
+    public static void TalkModuleTest()throws InterruptedException{
+
+        TalkModulePage talkModule = new TalkModulePage();
+        HomePage homePage = new HomePage();
+
+        String url = ConfigurationReader.getProperty("webUrl3");
+        Driver.getDriver().get(url);
+
+        //1.Login as a user
+        String username = ConfigurationReader.getProperty("username1");
+        LoginUtils.loginToTryCloud(Driver.getDriver(),username);
+
+        //2.Click to TalkModule on home page
+        homePage.talkModule.click();
+        BrowserUtils.sleep(2);
+
+        //3.Click to search box on Talk module page and search a user and write a message and submit it
+        talkModule.searchBox.click();
+        BrowserUtils.sleep(2);
+
+        talkModule.searchBox.sendKeys("User100");
+        talkModule.searchBox.sendKeys(Keys.ENTER);
+        BrowserUtils.sleep(2);
 
 
-        // Setup webdriver
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        WebElement user100 = Driver.getDriver().findElement(By.xpath("//a[@class='acli' and @aria-label='Conversation, User100']"));
+        user100.click();
+        BrowserUtils.sleep(2);
 
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-        // Home page Verification
-        String expectedTitle ="Trycloud - QA";
-        String actualTitle = driver.getTitle();
-
-        if (expectedTitle.equals(actualTitle)){
-            System.out.println("Title verification has PASSED. STEP 1 COMPLETE!");
-            System.out.println("actualTitle = " + actualTitle);
-            System.out.println("expectedTitle = " + expectedTitle);
-
-        }else{
-            System.out.println("actualTitle = " + actualTitle);
-            System.out.println("expectedTitle = " + expectedTitle);
-        }
-
-        // Login with UserName = "User20, User50, User80, User110" & Password = "Userpass123"
-
-        String userName = "User20";
-        String passWord = "Userpass123";
+        talkModule.mesaageBox.click();
+        talkModule.mesaageBox.sendKeys("Hi! How are you doing man ?");
+        talkModule.mesaageBox.sendKeys(Keys.ENTER);
+        BrowserUtils.sleep(1);
+        System.out.println("PASSED! I send a message to User100 !");
 
 
-        driver.findElement(By.name("user")).sendKeys(userName);    // username
-        driver.findElement(By.name("password")).sendKeys(passWord); // password
-        driver.findElement(By.id("submit-form")).click();           // click to the login button
-        Thread.sleep(2000);
-
-        String expectedURL = "http://qa.trycloud.net/index.php/apps/files/?dir=/&fileid=3146";
-        String actualURL = driver.getCurrentUrl();
-        if (expectedURL.equals(actualURL)) {
-            System.out.println("URL HAS PASSED! For username: " + userName);
-        } else {
-            System.out.println("FAILED! For username: " + userName);
-            System.out.println("actualURL = " + actualURL);
-            System.out.println("expectedURL = " + expectedURL);
-            throw new RuntimeException();
-        }
-
-        // Search Talks module value and press Enter Key
-        WebElement talksModuleButton = driver.findElement(By.xpath("//a[@href='http://qa.trycloud.net/index.php/apps/spreed/']"));
-        talksModuleButton.click();
-        Thread.sleep(3000);
-
-        // Home page Verification
-        String expectedTalkModuleTitle ="";
-        String actualTalkModuleTitle = driver.getTitle();
-
-        if (expectedTitle.equals(actualTitle)){
-            System.out.println("Title verification has PASSED. STEP 1 COMPLETE!");
-            System.out.println("actualTitle = " + actualTitle);
-            System.out.println("expectedTitle = " + expectedTitle);
-
-        }else{
-            System.out.println("actualTitle = " + actualTitle);
-            System.out.println("expectedTitle = " + expectedTitle);
-        }
-
-        // will be continue
-
-
-
+        // How can I use Java Faker here for find a user name ?
 
 
     }
+
+
+
 }
