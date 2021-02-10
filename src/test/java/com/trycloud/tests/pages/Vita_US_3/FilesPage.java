@@ -53,5 +53,5 @@ public class FilesPage {
     public WebElement submitCommentsButton;
 
     @FindBy (xpath = "//*[@id=\"commentsTabView\"]/ul/li[1]")
-    public WebElement commentAfter;
+    public WebElement comment;
 }
