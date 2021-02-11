@@ -1,6 +1,7 @@
 package com.trycloud.tests.base.rosie_US_3;
 
 import com.github.javafaker.Faker;
+import com.trycloud.tests.pages.rosie_US_3.HomePage;
 import com.trycloud.tests.pages.rosie_US_3.LoginPage;
 import com.trycloud.tests.utilities.BrowserUtils;
 import com.trycloud.tests.utilities.ConfigurationReader;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 public class Login {
 
     LoginPage loginPage = new LoginPage();
+    HomePage homePage = new HomePage();
     String expectedTitle;
 
 
@@ -40,9 +42,9 @@ public class Login {
         expectedTitle = "Dashboard - Trycloud QA";
         Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
 
-        loginPage.userButton.click();
+        homePage.userButton.click();
         BrowserUtils.sleep(2);
-        loginPage.logoutButton.click();
+        homePage.logoutButton.click();
         BrowserUtils.sleep(2);
 
 
@@ -83,9 +85,9 @@ public class Login {
             expectedTitle = "Dashboard - Trycloud QA";
             Assert.assertEquals(Driver.getDriver().getTitle(), expectedTitle);
 
-            loginPage.userButton.click();
+            homePage.userButton.click();
             BrowserUtils.sleep(2);
-            loginPage.logoutButton.click();
+            homePage.logoutButton.click();
             BrowserUtils.sleep(2);
 
 

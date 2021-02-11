@@ -84,7 +84,9 @@ public class TC5_TC6 extends TestBase {
 
         allFilesPage.uploadFile.click();
 
-        File file = new File("/Users/rosie/Desktop/Screen Shot 2021-02-08 at 3.17.51 PM.png");
+        String name = "/Users/rosie/Desktop/Screen Shot 2021-02-08 at 3.17.51 PM.png";
+
+        File file = new File(name);
         StringSelection stringSelection = new StringSelection(file.getAbsolutePath());
 
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
@@ -146,19 +148,15 @@ public class TC5_TC6 extends TestBase {
         List<WebElement> list = new ArrayList<>();
         list.addAll(Driver.getDriver().findElements(By.id("fileList")));
 
-        try {
-
 
         for (WebElement each : list) {
-            if (each.getText().contains((CharSequence) file)) {
-                Assert.assertEquals(file, each.getText());
+            if (each.getText().contains(name)) {
+                Assert.assertEquals(each.getText(),name);
                 return;
             }
 
 
         }
-    }catch (ClassCastException e){
 
-        }
     }
 }
