@@ -95,55 +95,45 @@ public class TC5_TC6 extends TestBase {
 
         // Cmd + Tab is needed since it launches a Java app and the browser looses focus
 
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_TAB);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_TAB);
-
-        robot.delay(500);
-
-        //Open Goto window
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_SHIFT);
-
-        robot.keyPress(KeyEvent.VK_G);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_SHIFT);
-
-        robot.keyRelease(KeyEvent.VK_G);
-
-        //Paste the clipboard value
-
-        robot.keyPress(KeyEvent.VK_META);
-
-        robot.keyPress(KeyEvent.VK_V);
-
-        robot.keyRelease(KeyEvent.VK_META);
-
-        robot.keyRelease(KeyEvent.VK_V);
-
-        //Press Enter key to close the Goto window and Upload window
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
-
-        robot.delay(500);
-
-        robot.keyPress(KeyEvent.VK_S);
-
-        robot.keyRelease(KeyEvent.VK_S);
-
-        robot.keyPress(KeyEvent.VK_ENTER);
-
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        try {
+            robot.keyPress(KeyEvent.VK_META);
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_META);
+            robot.keyRelease(KeyEvent.VK_TAB);
+            robot.delay(500);
+            //Open Goto window
+            robot.keyPress(KeyEvent.VK_META);
+            robot.keyPress(KeyEvent.VK_SHIFT);
+            robot.keyPress(KeyEvent.VK_G);
+            robot.keyRelease(KeyEvent.VK_META);
+            robot.keyRelease(KeyEvent.VK_SHIFT);
+            robot.keyRelease(KeyEvent.VK_G);
+            //Paste the clipboard value
+            robot.keyPress(KeyEvent.VK_META);
+            robot.keyPress(KeyEvent.VK_V);
+            robot.keyRelease(KeyEvent.VK_META);
+            robot.keyRelease(KeyEvent.VK_V);
+            //Press Enter key to close the Goto window and Upload window
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.delay(500);
+            robot.keyPress(KeyEvent.VK_S);
+            robot.keyRelease(KeyEvent.VK_S);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (IllegalArgumentException e){
+            robot.setAutoDelay(3000);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_V);
+            //Release
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_V);
+            //Enter
+            robot.setAutoDelay(3000);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            robot.setAutoDelay(2000);
+        }
 
         List<WebElement> list = new ArrayList<>();
         list.addAll(Driver.getDriver().findElements(By.id("fileList")));
