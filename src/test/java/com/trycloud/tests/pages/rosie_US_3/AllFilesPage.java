@@ -26,9 +26,6 @@ public class AllFilesPage {
     @FindBy(xpath = "//input[@class='icon-confirm']")
     public WebElement confirmButtonFolder;
 
-    @FindBy(xpath = "//span[.='Ruz']")
-    public WebElement createdFolder;
-
     @FindBy(xpath = "(//label[contains(@for,'select-files')])[1]")
     public WebElement selectBox;
 
@@ -37,5 +34,98 @@ public class AllFilesPage {
 
     @FindBy(xpath = "(//span[.='Delete'])[1]")
     public WebElement deleteButton;
+
+    @FindBy(id = "app-navigation-toggle")
+    public WebElement menuButton;
+
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+//
+//    @FindBy()
+//    public WebElement
+
+
+
 
 }

@@ -24,11 +24,14 @@ public class LoginPage {
     @FindBy(xpath ="//p[@class='warning wrongPasswordMsg']" )
     public WebElement errorMessage;
 
-    @FindBy(xpath = "//div[@id='expand']")
-    public WebElement userButton;
+    @FindBy(xpath = "//a[@class='toggle-password']")
+    public WebElement eyeButton;
 
-    @FindBy(xpath = "//li[@data-id='logout']")
-    public WebElement logoutButton;
+    @FindBy(id = "lost-password")
+    public WebElement forgotPasswordButton;
+
+    @FindBy(xpath = "(//a)[3]")
+    public WebElement loginDeviceButton;
 
 
 
