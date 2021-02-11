@@ -5,7 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
@@ -15,25 +15,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class SearchItem {
+public class SearchItem extends TestBase {
 
 
-    WebDriver driver;
 
-    @BeforeMethod
-    public void tryCloudLogin() {
-        // Open chrome browser
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        //Navigate to login page of TryCloud
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-    }
+
 
     /*
     Usernames:User50, User80, User110
@@ -42,7 +32,7 @@ public class SearchItem {
 
 
     @Test
-    public void SearchItem() throws InterruptedException {
+    public void SearchItem() throws InterruptedException, IOException {
         //1.Login
         String userName = "User20";
         String password = "Userpass123";
@@ -85,9 +75,5 @@ public class SearchItem {
 
     }
 
-    @AfterMethod
-    public void closing(){
-        driver.close();
-        //done
-    }
+
 }
