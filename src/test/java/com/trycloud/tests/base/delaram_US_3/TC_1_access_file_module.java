@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.Delaram_UserStory3;
+package com.trycloud.tests.base.delaram_US_3;
 
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.tests.utilities.ConfigurationReader;
@@ -19,7 +19,7 @@ public class TC_1_access_file_module extends TestBase {
         WebElement file_module = driver.findElement(By.xpath("(//li[@data-id='files' ])[1]"));
         file_module.click();
 
-
+      //access_file_module
 
 
 
