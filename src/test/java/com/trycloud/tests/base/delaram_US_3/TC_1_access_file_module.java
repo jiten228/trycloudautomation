@@ -1,4 +1,4 @@
-package com.trycloud.tests.base.Delaram_UserStory3;
+package com.trycloud.tests.base.delaram_US_3;
 
 import com.trycloud.tests.base.TestBase;
 import com.trycloud.tests.utilities.ConfigurationReader;
