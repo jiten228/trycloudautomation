@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -17,22 +18,12 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class SearchItem {
+public class SearchItem extends TestBase {
 
 
-    WebDriver driver;
 
-    @BeforeMethod
-    public void tryCloudLogin() {
-        // Open chrome browser
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        //Navigate to login page of TryCloud
-        driver.get("http://qa.trycloud.net/index.php/login?clear=1");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
-    }
+
 
     /*
     Usernames:User50, User80, User110
@@ -62,12 +53,12 @@ public class SearchItem {
 
         //3.Click "Search" module
 
-        driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/div[1]")).click();
+        driver.findElement(By.xpath("//*[@id='header']/div[2]/div[1]")).click();
 
         //4.Search any existing file/module
 
-        driver.findElement(By.xpath("//*[@id=\"header-menu-unified-search\"]/div[2]/div[1]/form/input")).sendKeys("talk");
-        driver.findElement(By.xpath("//div[@id=\"header-menu-unified-search\"]/div[2]/ul[1]/li[1]/a/div")).click();
+        driver.findElement(By.xpath("//*[@id='header-menu-unified-search']/div[2]/div[1]/form/input")).sendKeys("talk");
+        driver.findElement(By.xpath("//div[@id='header-menu-unified-search']/div[2]/ul[1]/li[1]/a/div")).click();
         Thread.sleep(1000);
 
         //2.Title Verification
@@ -81,5 +72,8 @@ public class SearchItem {
 
 
 
+
     }
+
+
 }

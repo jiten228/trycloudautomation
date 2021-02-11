@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
+    //By making the constructor private, we are limiting creating object from this class
     private Driver(){}
 
     private static WebDriver driver;
