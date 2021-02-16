@@ -1,10 +1,7 @@
-package com.trycloud.tests.base.userstory2;
+package com.trycloud.tests.base.Izzatgul_US_2;
 
 import com.trycloud.tests.base.TestBase;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
-
-import java.sql.Driver;
 
 public class UserStory2TC1  extends TestBase {
 
