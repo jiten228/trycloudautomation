@@ -1,6 +1,5 @@
-package com.trycloud.tests.base.userstory2;
+package com.trycloud.tests.base.Izzatgul_US_2;
 
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.trycloud.tests.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,9 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.sql.Driver;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class MenuBarPOM {
@@ -136,13 +132,6 @@ WebDriver driver;
 
 
     /*
-
-
-
-
-
-
-
 
     2.Story:
     As a user, I should be access all the main modules of the app.
