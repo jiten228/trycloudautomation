@@ -170,3 +170,16 @@ WebDriver driver;
 
      */
 
+
+//  @Test
+//   public void AccessFilesModule(){
+           /*
+           2.Verify the user see the following modules:
+           Files
+           Galleries
+           Activity
+           Talk
+           Contacts
+           Calendar
+           Note
+            */
